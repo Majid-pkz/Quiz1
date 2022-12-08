@@ -5,8 +5,8 @@ header{
     color: #fff;
     border-bottom:30px #879274;
 }
-h1, .large-font{
-    color:aliceblue;
+h1, .large-font,.question-place{
+    color:black;
     font-family:Arial, Helvetica, sans-serif;;
     text-align: center;
     font-size: 200%;
