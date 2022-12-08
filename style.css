@@ -1,0 +1,30 @@
+header{
+    padding: 40px;
+    text-align: center;
+    background: #0957a0;
+    color: #fff;
+    border-bottom:30px #879274;
+}
+h1, .large-font{
+    color:aliceblue;
+    font-family:Arial, Helvetica, sans-serif;;
+    text-align: center;
+    font-size: 200%;
+}
+h3{
+    display: flex;
+    justify-content: flex-end;
+}
+button{
+    background: radial-gradient(circle, rgb(183, 170, 55) 0%, rgba(187,96,33,0.9542191876750701) 100%);
+    border-radius: 8px;
+    color: #13293d;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: auto;
+    padding: 20px 52px;
+    text-align: center;
+    margin-top:10px;
+}
