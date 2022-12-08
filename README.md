@@ -1,4 +1,4 @@
-# Quiz1
+# Quiz Application
 ## User Story
 AS A coding boot camp student
 I WANT to ceate a timed quiz on JavaScript fundamentals that stores high scores
