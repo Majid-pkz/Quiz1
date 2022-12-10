@@ -15,7 +15,7 @@ h3{
     display: flex;
     justify-content: flex-end;
 }
-button{
+#start-button{
     background: radial-gradient(circle, rgb(183, 170, 55) 0%, rgba(187,96,33,0.9542191876750701) 100%);
     border-radius: 8px;
     color: #13293d;
@@ -27,7 +27,31 @@ button{
     padding: 20px 52px;
     text-align: center;
     margin-top:10px;
+    }
+    .choice-button{
+    background: #552586;
+    border-radius: 8px;
+    color: #FFFF;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    width: 700px;   
+    padding: 20px 5px;
+    text-align: left;
+    margin-top:10px;
+    visibility: hidden;
+    }
+#next-button{
+    
+visibility: hidden;
 }
 #feedback{
     font-size: 300%;
+}
+.question-place{
+    margin-top: 30px;
+}
+.multipl-answers{
+    margin-top: 40px;
 }

@@ -1,9 +1,9 @@
 var timer;
 var timeEl=document.querySelector(".time");
-var timeCounter=60;
+var timeCounter=76;
 var timeOverMsg=document.querySelector("#timeOver-message");
-var startButton=document.querySelector(".start-button");
-var nextButton=document.querySelector(".next-button"); 
+var startButton=document.querySelector("#start-button");
+var nextButton=document.querySelector("#next-button"); 
 var questionEl=document.querySelector(".question-place")
 var selectA=document.querySelector("#a");
 var selectB=document.querySelector("#b")
@@ -15,7 +15,7 @@ var feedbackEL=document.querySelector("#feedback")
  var currentC="";
  var currentD="";
 
-var numbQuestion=0;
+var numbQuestion=1;
 var currentQuestion=0;
 var choices=0;
 var feedback="";
@@ -28,13 +28,15 @@ var chiceD=document.querySelector("#d");
 
 
 
-var questions=["1-What is Javascript","2-What is API","3-What is JSON","4-what was your favorite lecture"]
-var answOptions=["A- browsers programming lang","B- databse","C- Anti-Virus","D- DocumentScript",
-"A- Australian Property Institute","B- Application Programming Interface","C- Android Applications","D- None of the above",
-"Computer manufacturing","Firewall","Javascript Object Notation","None",
-"AQ4","BQ4","CQ4-Myfavorite","DQ4"
+var questions=["Commonly used data types Do Not Include:","The condition in an if/else statement is enclosed with","Array in Javascript can be used to store",
+"Strings values must be enclosed within ___when being assigned to varables","A very useful tool during developmentand debugging for printing content to the debugger is:"]
+var answOptions=["A- strings","B- booleans","C- alerts","D- numbers",
+"A- quotes","B- curly brackets","C- parenthesis","D- square brackets",
+"A- numbers and strings","B- other arrays","C- booleans","D- All of the above",
+"A- commas","B- curly brackets","C- quotes","D- parenthesis","A- Javascript","B- terminal/bash","C- for loops","D- console.log"
+
 ];
-var correctAnswer=["A- browsers programming lang","B- Application Programming Interface","Javascript Object Notation","CQ4-Myfavorite"];
+var correctAnswer=["C- alerts","C- parenthesis","D- All of the above","C- quotes","D- console.log"];
 // var correctAns1 ="browsers programming lang"
 // var answ2Options=["A- Australian Property Institute","B- Application Programming Interface","C- Android Applications","D- None of the above"];
 // var answ3Optiona=["Computer manufacturing","Firewall","Javascript Object Notation","None"];
@@ -43,9 +45,10 @@ timeCounter.textContent=timer;
 
 function startQuiz(){
     startTimer();
-    displayQusetion();
+    makeVisible();
+    displayQusetion();    
     displayAnswer();
-    
+    makeVisible();    
 }
 
 function startTimer(){
@@ -74,12 +77,18 @@ function displayQusetion(){
     questionEl.textContent=questions[currentQuestion];
 }
 function nextQuestion(){
+    if( numbQuestion>=5){
+        makeHidden();
+      
+    }
+
     //add one to question array index
     currentQuestion++;
     //add 4 to answers array index to move to next series of choices
     choices=choices+4;
     displayQusetion();
     displayAnswer();
+    numbQuestion++;
 }
 
 function displayAnswer(){
@@ -139,6 +148,20 @@ function checkAnswerforD(){
       feedbackEL.textContent=feedback;
       nextQuestion();
 
+}
+function makeVisible(){
+    document.querySelector("#a").setAttribute("style","visibility:visible")
+    document.querySelector("#b").setAttribute("style","visibility:visible")
+    document.querySelector("#c").setAttribute("style","visibility:visible")
+    document.querySelector("#d").setAttribute("style","visibility:visible")    
+}
+function makeHidden(){
+    document.querySelector("#a").setAttribute("style","visibility:hidden")
+    document.querySelector("#b").setAttribute("style","visibility:hidden")
+    document.querySelector("#c").setAttribute("style","visibility:hidden")
+    document.querySelector("#d").setAttribute("style","visibility:hidden") 
+   // document.querySelector("#feedback").setAttribute("style","visibility:hidden")
+    
 }
 
 
