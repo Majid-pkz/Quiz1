@@ -14,12 +14,12 @@ var feedbackEL=document.querySelector("#feedback")
  var currentB="";
  var currentC="";
  var currentD="";
-
-var numbQuestion=1;
+var totalNumofQuestions=5;
+var numbQuestion=0;
 var currentQuestion=0;
 var choices=0;
 var feedback="";
-
+var maxx=0;
 
 var chiceA=document.querySelector("#a");
 var chiceB=document.querySelector("#b");
@@ -59,9 +59,10 @@ function startTimer(){
       if(timeCounter<30){
         timeEl.setAttribute("style","color:red")
         }
-     if(timeCounter=== 0){
+    else if(timeCounter<= 0){
             timeOverMesage();
             clearInterval(timer);
+            timeEl.textContent="0";
         }
     
 
@@ -77,10 +78,16 @@ function displayQusetion(){
     questionEl.textContent=questions[currentQuestion];
 }
 function nextQuestion(){
-    if( numbQuestion>=5){
+    if( currentQuestion>=(totalNumofQuestions-1)){
         makeHidden();
-      
+      // need to stop timer
+      clearInterval(timer);
+
+      //show the form
+      document.getElementById("form").classList.remove("hidden");
+      document.getElementById("score").textContent= timeCounter;
     }
+    else{
 
     //add one to question array index
     currentQuestion++;
@@ -89,6 +96,7 @@ function nextQuestion(){
     displayQusetion();
     displayAnswer();
     numbQuestion++;
+    }
 }
 
 function displayAnswer(){
@@ -107,7 +115,13 @@ function checkAnswerforA(){
     }
     else{
         feedback="Wrong";
-        timeCounter-=20;
+        if(timeCounter>=20){
+            timeCounter-=20;
+        }
+        else{
+           numbQuestion=totalNumofQuestions;
+        }
+        
     }
     feedbackEL.textContent=feedback;
     nextQuestion();
@@ -118,9 +132,15 @@ function checkAnswerforB(){
         feedback="correct";
       }
       else{
-          feedback="Wrong";
-          timeCounter-=20;
-      }
+        feedback="Wrong";
+        if(timeCounter>=20){
+            timeCounter-=20;
+        }
+        else{
+            numbQuestion=totalNumofQuestions;
+        }
+        
+    }
       feedbackEL.textContent=feedback;
       nextQuestion();
 
@@ -130,9 +150,15 @@ function checkAnswerforC(){
         feedback="correct";
       }
       else{
-          feedback="Wrong";
-          timeCounter-=20;
-      }
+        feedback="Wrong";
+        if(timeCounter>=20){
+            timeCounter-=20;
+        }
+        else{
+            numbQuestion=totalNumofQuestions;
+        }
+        
+    }
       feedbackEL.textContent=feedback;
       nextQuestion();
 
@@ -142,9 +168,15 @@ function checkAnswerforD(){
         feedback="correct";
       }
       else{
-          feedback="Wrong";
-          timeCounter-=20;
-      }
+        feedback="Wrong";
+        if(timeCounter>=20){
+            timeCounter-=20;
+        }
+        else{
+            numbQuestion=totalNumofQuestions;
+        }
+        
+    }
       feedbackEL.textContent=feedback;
       nextQuestion();
 
@@ -160,9 +192,29 @@ function makeHidden(){
     document.querySelector("#b").setAttribute("style","visibility:hidden")
     document.querySelector("#c").setAttribute("style","visibility:hidden")
     document.querySelector("#d").setAttribute("style","visibility:hidden") 
-   // document.querySelector("#feedback").setAttribute("style","visibility:hidden")
+    document.querySelector(".question-place").setAttribute("style","display:none")
+   
+    //document.querySelector("#feedback").setAttribute("style","visibility:hidden")'
+    // unlike the others we want this messeage to pop up at the end
+    document.getElementById("endOfQuiz").setAttribute("style","display:block")
+    clearInterval(timer);
     
 }
+
+function saveToLocalStorage(){
+ if(localStorage.getItem("highscore")){
+    var scoreArray=JSON.parse(localStorage.getItem("highscore"))
+    scoreArray.push({score:timeCounter, initials:document.getElementById("initial").value})
+    localStorage.setItem("highscore", JSON.stringify(scoreArray))
+    //
+ }
+ else{
+    var scoreArray=[{score:timeCounter, initials:document.getElementById("initial").value}];
+    localStorage.setItem("highscore", JSON.stringify(scoreArray))
+ }
+}
+
+
 
 
 startButton.addEventListener("click",startQuiz);
@@ -170,6 +222,6 @@ nextButton.addEventListener("click",nextQuestion)
 selectA.addEventListener("click",checkAnswerforA,nextQuestion);
 selectB.addEventListener("click",checkAnswerforB,nextQuestion);
 selectC.addEventListener("click",checkAnswerforC,nextQuestion);
-selectD.addEventListener("click",checkAnswerforD,nextQuestion)
+selectD.addEventListener("click",checkAnswerforD,nextQuestion);
+document.getElementById("submit").addEventListener("click",saveToLocalStorage);
 
-console.log(currentA);

@@ -55,3 +55,14 @@ visibility: hidden;
 .multipl-answers{
     margin-top: 40px;
 }
+.hidden{
+    display:none;
+}
+#endOfQuiz{
+ text-align: center;
+ font-size:xx-large;
+ font-weight: bold;
+}
+#form{
+    text-align: center;
+}
